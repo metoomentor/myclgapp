@@ -1,0 +1,955 @@
+ <html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Thiagarajar College</title>
+
+   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+
+    <ion-nav-view></ion-nav-view>
+
+    <script id="templates/event-menu.html" type="text/ng-template">
+      <ion-side-menus enable-menu-with-back-views="false">
+
+        <ion-side-menu-content>
+          <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+              <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+              </button>
+            </ion-nav-buttons>
+          </ion-nav-bar>
+
+          <ion-nav-view name="menuContent"></ion-nav-view>
+        </ion-side-menu-content> 
+
+        <ion-side-menu side="left">
+          <ion-header-bar class="bar-assertive">
+            <h1 class="title">Menus</h1>
+          </ion-header-bar>
+          <ion-content>
+            <ul class="list">
+              <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+              <a href="#/event/about" class="item" menu-close>About</a>
+              <a href="#/event/form" class="item" menu-close>Application Form</a>
+              <a href="#/event/attendees" class="item" menu-close>Status</a>
+            </ul>
+          </ion-content>
+        </ion-side-menu>
+
+      </ion-side-menus>
+    </script>
+
+    <script id="templates/about.html" type="text/ng-template">
+		<ion-view title="Thiagarajar College">
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+			</ion-nav-buttons>
+
+	  
+		<!--Header -->
+		<ion-content class="has-header">
+			<br><br>
+			<div class="card">
+
+				<center>
+					<img src="img/i2.png"/>
+					<h2>Thiagarajar College</h2>
+					<!--<p>Back off, man. I'm a scientist.</p>-->
+				</center>
+			</div>
+			
+		<div class="card">
+			The college has sixty five years of history behind it. It is a private and aided institution affiliated to Madurai Kamaraj University and managed by Kalaithanthai Karumuttu Thiagrajan Chettiar Memorial Trust. 
+
+			Employability, along with academic excellence, is the focal point of the college. It has undergone an appreciable and noteworthy change in all fields with an objective to spread quality education, fostering excellence in research and promoting academic inquiry. It has been recognized as a Research Centre of Excellence since 1978 and was upgraded as an autonomous institution in 1987. It was first accredited with Five Stars by National Assessment and Accreditation Council in 2001 and was Re-accredited with 'A' Grade in 2007.Our College was accredited with the Top grade for the third time in January 2013 as 'A' Grade with 3.37 CGPA by NAAC.
+		</div>
+		</ion-content>
+	</ion-view>
+
+    </script>
+
+    <script id="templates/form.html" type="text/ng-template">
+		<ion-view title="Admission form for UG and PG">
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+			</ion-nav-buttons>
+		
+		<ion-content>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.ugregularpart1" class="button button-block button-positive">
+			UG Regular
+			</a>
+		</center>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.ugselfpart1" class="button button-block button-positive">
+			UG Self-Finance
+			</a>
+		</center>
+		<br>
+		<center>
+			<button class="button button-block button-positive">
+				PG Regular
+			</button>
+		</center>
+		<br>
+		<center>
+			<button class="button button-block button-positive">
+				PG Self-Finance
+			</button>
+		</center>
+	  </ion-content>
+	</ion-view>
+
+    </script>
+	
+	<!-- UG Regular---------------------------------------------------------------------   -->
+	 <script id="templates/ugregularpart1.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+		<div class="modal1">
+			<ion-header-bar class="bar bar-header bar-assertive">
+			<h1 class="title">UG Regular</h1>
+		<div class="buttons">
+		  <button class="button button-clear" ng-click="closeForm()">Close</button>
+		</div>
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm">  
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">First name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Last name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select>
+				<option>B.A(Tamil)</option>
+				<option>B.A(English)</option>
+				<option>B.A(Economics(Tamil Medium))</option>
+				<option selected>B.Sc(Computer Science)</option>
+				<option>B.Sc(Physics)</option>
+				<option>B.Sc(Chemistry)</option>
+				<option>B.Sc(Maths)</option>
+				<option>B.Sc(Botany)</option>
+				<option>B.Sc(Industrial Micro Biology)</option>
+				<option>B.Com</option>
+				<option>BBA</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Email ID</span>
+				<input type="email">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" pattern="[789][0-9]{9}">
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			  <a ui-sref="eventmenu.ugregularpart2" class="button button-block button-assertive">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+	<script id="templates/ugregularpart2.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+		<div class="modal2">
+			<ion-header-bar class="bar bar-header bar-assertive">
+				<h1 class="title">UG Regular</h1>
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm2">
+		  <div class="list">
+			<label class="item item-input item-select">
+				<!--<div class="input-label">
+				Courses
+				</div>-->
+				<span class="input-label">Community</span>
+				<select>
+				<option>BC</option>
+				<option>MBC</option>
+				<option>SC</option>
+				<option>ST</option>
+				<option selected>BC(M)</option>
+				<option>SC(A)</option>
+				<option>FC</option>
+				<option>OC</option>
+				</select>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">SC/ST Code Number</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Native District</span>
+				<input type="text">
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Religion</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Nationality</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text">
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart3" class="button button-block button-assertive">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/ugregularpart3.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+			<div class="modal3">
+		<ion-header-bar class="bar bar-header bar-energized">
+			<h1 class="title">UG Regular</h1>
+			<div class="buttons">
+			<button class="button button-clear" ng-click="closeForm2()">Close</button>
+			</div>
+		</ion-header-bar>
+		<ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Address</span>
+				<textarea></textarea>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Name of your School</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Location of your School</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Register Number</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">No Of Apperence</span>
+				<input type="number">
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Stream</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Academic
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Vocational
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart4" class="button button-block button-energized">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugregularpart4.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+				<div class="modal4">
+		<ion-header-bar class="bar bar-header bar-energized">
+			<h1 class="title">UG Regular</h1>
+			<div class="buttons">
+			<button class="button button-clear" ng-click="closeForm3()">Close</button>
+			</div>
+		</ion-header-bar>
+		<ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part1</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part2</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark for Part1</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark for Part2</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark1 for Part3</span>
+				<input type="number">
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart5" class="button button-block button-energized">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/ugregularpart5.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+			<div class="modal5">
+				<ion-header-bar class="bar bar-header bar-balanced">
+					<h1 class="title">UG Regular</h1>
+			<div class="buttons">
+				<button class="button button-clear" ng-click="closeForm4()">Close</button>
+			</div>
+				</ion-header-bar>
+	  <ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Mark2 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total Mark</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<a ui-sref="eventmenu.ugregularpart6" class="button button-block button-balanced">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugregularpart6.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+			<div class="modal5">
+		<ion-header-bar class="bar bar-header bar-balanced">
+			<h1 class="title">UG Regular</h1>
+		<div class="buttons">
+		  <button class="button button-clear" ng-click="closeForm5()">Close</button>
+		</div>
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm" ng-submit="doLogin()">
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					<br>
+				<br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+			<label class="item">
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <button class="button button-block button-balanced" ng-submit="doLogin()" type="submit">Submit</button>
+			</label>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- UG Regular----------------------------------------------------------------------->
+
+	<!-- UG Self-Finance -->
+	
+	<script id="templates/ugselfpart1.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+		<div class="modal1">
+			<ion-header-bar class="bar bar-header bar-assertive">
+			<h1 class="title">UG Regular</h1>
+		<div class="buttons">
+		  <button class="button button-clear" ng-click="closeForm()">Close</button>
+		</div>
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm">  
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">First name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Last name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select>
+				<option>B.A(English)</option>
+				<option>B.A(Economics(English Medium))</option>
+				<option>B.Sc(Computer Science)</option>
+				<option selected>B.Sc(Bio-Technology)</option>
+				<option>B.Sc(IT)</option>
+				<option>BCA</option>
+				<option>B.Com</option>
+				<option>BBA</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Email ID</span>
+				<input type="email">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" pattern="[789][0-9]{9}">
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			  <a ui-sref="eventmenu.ugselfpart2" class="button button-block button-assertive">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+
+	<script id="templates/ugselfpart2.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+		<div class="modal2">
+			<ion-header-bar class="bar bar-header bar-assertive">
+				
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm2">
+		  <div class="list">
+			<label class="item item-input item-select">
+				<!--<div class="input-label">
+				Courses
+				</div>-->
+				<span class="input-label">Community</span>
+				<select>
+				<option>BC</option>
+				<option>MBC</option>
+				<option>SC</option>
+				<option>ST</option>
+				<option selected>BC(M)</option>
+				<option>SC(A)</option>
+				<option>FC</option>
+				<option>OC</option>
+				</select>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">SC/ST Code Number</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Native District</span>
+				<input type="text">
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Religion</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Nationality</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text">
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart3" class="button button-block button-assertive">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/ugselfpart3.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+			<div class="modal3">
+		<ion-header-bar class="bar bar-header bar-energized">
+		</ion-header-bar>
+		<ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Address</span>
+				<textarea></textarea>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Name of your School</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Location of your School</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Register Number</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">No Of Apperence</span>
+				<input type="number">
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Stream</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Academic
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				Vocational
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart4" class="button button-block button-energized">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugselfpart4.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+				<div class="modal4">
+		<ion-header-bar class="bar bar-header bar-energized">
+		</ion-header-bar>
+		<ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part1</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part2</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark for Part1</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark for Part2</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark1 for Part3</span>
+				<input type="number">
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart5" class="button button-block button-energized">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/ugselfpart5.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+			<div class="modal5">
+				<ion-header-bar class="bar bar-header bar-balanced">
+				</ion-header-bar>
+	  <ion-content>
+		<form name="ugForm3">
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">Mark2 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total Mark</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<a ui-sref="eventmenu.ugselfpart6" class="button button-block button-balanced">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugselfpart6.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+			<div class="modal5">
+		<ion-header-bar class="bar bar-header bar-balanced">
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugForm" ng-submit="doLogin()">
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="group">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					<br>
+				<br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+			<label class="item">
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <button class="button button-block button-balanced" ng-submit="doLogin()" type="submit">Submit</button>
+			</label>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- UG Self-Finance----------------------------------------------------------------------->	
+
+
+
+
+
+	
+    <script id="templates/attendees.html" type="text/ng-template">
+      <ion-view view-title="Event Attendees">
+        <ion-content>
+        <div class="item item-divider">
+              Registered People
+         </div>
+          <div class="list">
+            <ion-toggle ng-repeat="attendee in attendees | orderBy:'firstname' | orderBy:'lastname'"
+                        ng-model="attendee.arrived"
+                        ng-change="arrivedChange(attendee)">
+              {{ attendee.firstname }}
+              {{ attendee.lastname }}
+            </ion-toggle>
+            <div class="item item-divider">
+              Attendees
+            </div>
+            <div class="item" ng-repeat="msg in activity">
+              {{ msg }}
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+  </body>
+</html>
